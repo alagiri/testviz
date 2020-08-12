@@ -1,0 +1,25 @@
+{
+    "visual": {
+        "name": "testviz",
+        "displayName": "testviz",
+        "guid": "testviz519CF99E6F6B41FABD90B054C99B41F0",
+        "visualClassName": "Visual",
+        "version": "1.0.0",
+        "description": "test",
+        "supportUrl": "http://www.esri.com",
+        "gitHubUrl": ""
+    },
+    "apiVersion": "2.6.0",
+    "author": {
+        "name": "Esri",
+        "email": "esri@esri.com"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "externalJS": null,
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": []
+}

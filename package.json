@@ -1,0 +1,39 @@
+{
+  "name": "visual",
+  "scripts": {
+    "pbiviz": "pbiviz",
+    "cert": "pbiviz --install-cert",
+    "package": "webpack",
+    "start": "webpack-dev-server",
+    "lint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.0",
+    "@babel/runtime-corejs2": "7.6.0",
+    "@babel/runtime-corejs3": "^7.11.2",
+    "core-js": "^3.2.1",
+    "powerbi-visuals-api": "^3.2.0",
+    "powerbi-visuals-utils-dataviewutils": "2.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "base64-inline-loader": "^1.1.1",
+    "css-loader": "^4.2.1",
+    "extra-watch-webpack-plugin": "^1.0.3",
+    "json-loader": "^0.5.7",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "powerbi-visuals-tools": "^3.1.15",
+    "powerbi-visuals-webpack-plugin": "^2.2.5",
+    "ts-loader": "^6.1.0",
+    "tslint": "^5.18.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typescript": "3.6.3",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
