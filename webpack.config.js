@@ -143,6 +143,10 @@ module.exports = {
         path: path.join(__dirname, "/.tmp","drop"),
         publicPath: 'assets',
         filename: "[name]",
+        // if API version of the visual is higer/equal than 3.2.0 add library and libraryTarget options into config
+        // API version less that 3.2.0 doesn't require it
+        library: +powerbiApi.version.replace(/\./g,"") >= 320 ? pbivizFile.visual.guid : undefined,
+        libraryTarget: +powerbiApi.version.replace(/\./g,"") >= 320 ? 'var' : undefined
     },
     devServer: {
         disableHostCheck: true,
@@ -157,19 +161,24 @@ module.exports = {
             // key: path.join(__dirname, "certs","PowerBICustomVisualTest_public.key"), // for darwin, linux
             // cert: path.join(__dirname, "certs", "PowerBICustomVisualTest_public.cer"), // for darwin, linux
             // pfx: fs.readFileSync(path.join(__dirname, "certs", "PowerBICustomVisualTest_public.pfx")), // for windows
-            pfx: fs.readFileSync(path.join(__dirname, "node_modules/powerbi-visuals-tools/certs/PowerBICustomVisualTest_public.pfx")), // for windows
-            passphrase: "9230463447099939"
+            pfx: fs.readFileSync(path.join(__dirname, "certs", "PowerBICustomVisualTest_public.pfx")), // for windows
+            passphrase: "7615461674471831"
         },
         headers: {
             "access-control-allow-origin": "*",
             "cache-control": "public, max-age=0"
         },
     },
-    externals: {
-        "powerbi-visuals-api": 'null',
-        "fakeDefine": 'false',
-        "corePowerbiObject": "Function('return this.powerbi')()",
-        "realWindow": "Function('return this')()"
+    externals: powerbiApi.version.replace(/\./g,"") >= 320 ? 
+    {
+    	"powerbi-visuals-api": 'null',
+    	"fakeDefine": 'false',
+    } :
+    {
+    	"powerbi-visuals-api": 'null',
+    	"fakeDefine": 'false',
+    	"corePowerbiObject": "Function('return this.powerbi')()",
+    	"realWindow": "Function('return this')()"
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -214,10 +223,19 @@ module.exports = {
                 capabilitiesPath
             ]
         }),
-        new webpack.ProvidePlugin({
-            window: 'realWindow',
-            define: 'fakeDefine',
-            powerbi: 'corePowerbiObject'
-        }),
+        // new webpack.ProvidePlugin({
+        //     window: 'realWindow',
+        //     define: 'fakeDefine',
+        //     powerbi: 'corePowerbiObject'
+        // }),
+        powerbiApi.version.replace(/\./g,"") >= 320 ? 
+    	new webpack.ProvidePlugin({
+        	define: 'fakeDefine',
+    	}) : 
+    	new webpack.ProvidePlugin({
+        	window: 'realWindow',
+        	define: 'fakeDefine',
+        	powerbi: 'corePowerbiObject'
+    	})
     ]
 };
