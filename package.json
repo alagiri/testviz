@@ -4,7 +4,7 @@
     "pbiviz": "pbiviz",
     "cert": "pbiviz --install-cert",
     "package": "webpack",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --inline --progress --config webpack.config.js",
     "lint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
@@ -28,11 +28,11 @@
     "mini-css-extract-plugin": "^0.10.1",
     "powerbi-visuals-tools": "^3.1.15",
     "powerbi-visuals-webpack-plugin": "^2.2.5",
-    "ts-loader": "^6.2.2",
+    "ts-loader": "^9.2.3",
     "tslint": "5.18.0",
     "tslint-microsoft-contrib": "6.2.0",
     "typescript": "^3.9.10",
-    "webpack": "^4.46.0",
+    "webpack": "^5.41.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
   }
